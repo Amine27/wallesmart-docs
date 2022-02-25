@@ -75,7 +75,11 @@ export default defineUserConfig<DefaultThemeOptions>({
 
     repo: 'Amine27/wallesmart-docs',
 
+    docsBranch: 'master',
+
     docsDir: 'docs',
+
+    editLinkPattern: ':repo/edit/:branch/src/:path',
 
     locales: {
       '/': {
