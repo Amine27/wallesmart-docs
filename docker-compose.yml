@@ -1,0 +1,49 @@
+version: '3'
+services:
+  # docs:
+  #   image: node:16-buster
+  #   container_name: docs-vuepress
+  #   ports:
+  #     - 8080:8080
+  #   environment:
+  #     - TZ=Europe/Brussels
+  #     - NODE_ENV=development
+  #     - DEBUG=docs
+  #   volumes:
+  #     - ./src/:/usr/src/service
+  #   working_dir: /usr/src/service
+  #   user: node
+  #   command: npm run docs:dev
+  #   labels:
+  #     - "traefik.enable=true"
+  #     - "traefik.http.routers.docs.rule=Host(`docs.wallesmart.be`)"
+  #     - "traefik.http.routers.hugo.entrypoints=websecure"
+  #     - "traefik.http.routers.hugo.tls.certresolver=certResolver"
+  #     - "traefik.http.routers.hugo.middlewares=compression@docker"
+  #     - "traefik.http.services.hugo.loadbalancer.server.port=80"
+  #   networks:
+  #     - proxy
+  #   restart: always
+
+  docs:
+    image: nginx
+    container_name: docs
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - ./src/docs/.vuepress/dist:/usr/share/nginx/html
+    environment:
+      - TZ=Europe/Brussels
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.hugo.rule=Host(`docs.wallesmart.be`)"
+      - "traefik.http.routers.hugo.entrypoints=websecure"
+      - "traefik.http.routers.hugo.tls.certresolver=certResolver"
+      - "traefik.http.routers.hugo.middlewares=compression@docker"
+      - "traefik.http.services.hugo.loadbalancer.server.port=80"
+    restart: always
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

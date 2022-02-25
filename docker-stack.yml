@@ -1,0 +1,50 @@
+version: '3.8'
+services:
+  # docs:
+  #   image: node:16-buster
+  #   environment:
+  #     - TZ=Europe/Brussels
+  #     - NODE_ENV=production
+  #     - DEBUG=docs
+  #   volumes:
+  #     - ./src/:/usr/src/service
+  #   working_dir: /usr/src/service
+  #   command: npm run docs:dev
+  #   deploy:
+  #     placement:
+  #       constraints:
+  #         - node.hostname==wallesmart
+  #     labels:
+  #       - "traefik.enable=true"
+  #       - "traefik.docker.network=swarm-net"
+  #       - "traefik.http.routers.docs.entrypoints=websecure"
+  #       - "traefik.http.routers.docs.tls.certresolver=certResolver"
+  #       - "traefik.http.services.docs.loadbalancer.server.port=8080"
+  #       # - "traefik.http.routers.docs.middlewares=compression@docker"
+  #   networks:
+  #     - swarm-net
+
+  docs:
+    image: nginx
+    environment:
+      - TZ=Europe/Brussels
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - ./src/docs/.vuepress/dist:/usr/share/nginx/html
+    deploy:
+      placement:
+        constraints:
+          - node.hostname==wallesmart
+      labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=swarm-net"
+        - "traefik.http.routers.hugo.rule=Host(`docs.wallesmart.be`)"
+        - "traefik.http.routers.hugo.entrypoints=websecure"
+        - "traefik.http.routers.hugo.tls.certresolver=certResolver"
+        - "traefik.http.services.hugo.loadbalancer.server.port=80"
+    networks:
+      - swarm-net
+
+networks:
+  swarm-net:
+    external: true
