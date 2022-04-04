@@ -4,10 +4,10 @@ title: WALLeSmart
 heroImage: images/logo.svg
 
 actions:
-- text: Get Started
+- text: Commencer
   link: /guide/
   type: primary
-- text: Visite Website
+- text: Visitez le site Web
   link: https://www.wallesmart.be
   type: secondary
 
