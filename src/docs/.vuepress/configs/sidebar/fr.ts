@@ -23,7 +23,6 @@ export const fr: SidebarConfig = {
           children: [
             '/guide/use/app.md',
             '/guide/use/data.md',
-            '/guide/use/users.md',
           ],
         },
         {
@@ -32,7 +31,6 @@ export const fr: SidebarConfig = {
           children: [
             '/guide/provide/app.md',
             '/guide/provide/data.md',
-            '/guide/provide/users.md',
           ],
         },
         {

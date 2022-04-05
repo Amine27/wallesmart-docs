@@ -57,3 +57,9 @@ l’autorisation donnée par des tiers. L’utilitaire est constitué de deux pa
 * Mandant
 
 (*Cette fonctionnalité sera développée lorsque nous aurons accès aux informations du SPW.*)
+
+## Changement d'un profil
+
+Si un utilisateur a choisi un profil, il peut basculer vers un autre profil à tout moment, on utilisant le menu latéral à droite :
+
+![Image](/images/guide/account/account-switch.png)
