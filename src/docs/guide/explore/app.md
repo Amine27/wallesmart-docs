@@ -1,4 +1,4 @@
-# Applications
+# Explorer les applications
 
 Cette page permet de naviguer dans le catalogue complet des applications disponibles pour la catégorie dont l’utilisateur fait partie. Elle comprend deux sous-fonctionnalités : « Parcourir » et « Rechercher », qui sont décrient dans les sections suivantes.
 
